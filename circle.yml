@@ -10,7 +10,8 @@ dependencies:
   override:
     - docker info
     - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
-    - docker build -t blairs/spectrum-nz-db .
+    - docker build -t blairs/spectrum-nz-db .:
+        timeout: 1800
     - mkdir -p ~/docker; docker save blairs/spectrum-nz-db > ~/docker/image.tar
 
 deployment:
